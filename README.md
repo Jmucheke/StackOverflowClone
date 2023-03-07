@@ -1,2 +1,3 @@
 # StackOverflowClone
-StackOverflow Clone using Angular | NodeJS MSSQL(backend)
+StackOverflow Clone
+Angular | NodeJS | MSSQL(backend)
