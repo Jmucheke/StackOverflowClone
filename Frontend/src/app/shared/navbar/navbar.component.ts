@@ -3,12 +3,19 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-navbar',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class LoginComponent {
+export class NavbarComponent {
+  isOpen = false
+
+
+  toggleOpen(): void {
+    this.isOpen = !this.isOpen;
+
+  }
 
 }

@@ -162,3 +162,7 @@ html {
   font-size: 10px;
   color: var(--black-800);
 }
+
+section {
+  padding: 5rem 0;
+}

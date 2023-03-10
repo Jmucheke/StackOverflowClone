@@ -1,0 +1,13 @@
+
+section {
+  padding: 5rem 0;
+}
+
+/* All Quetions title */
+.all-qn{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* All Quetions title end */
+

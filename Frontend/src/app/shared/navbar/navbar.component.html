@@ -1,0 +1,87 @@
+<header>
+
+  <div class="nav-container">
+    <nav>
+      <div class="nav-brand">
+        <div class="hamburger-menu-container" [ngClass]="{ 'open': isOpen }">
+
+          <div class="hamburger-menu" (click)="toggleOpen()">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+          </div>
+          <div class="nav-dropdown-menu">
+            <a routerLink="" class="current-link">Home</a>
+            <h5>Public</h5>
+            <ul class="nav-ul">
+              <li class="nav-item item1">
+                <i class="fas fa-globe-europe"></i>
+                <a routerLink="questions" class="nav-link">Questions</a>
+              </li>
+              <li class="nav-item"><a href="#" class="nav-link">Tags</a></li>
+              <li class="nav-item"><a href="#" class="nav-link">Users</a></li>
+            </ul>
+            <h5>Find a Job</h5>
+            <ul class="nav-ul">
+              <li class="nav-item"><a href="#" class="nav-link">Jobs</a></li>
+              <li class="nav-item"><a href="#" class="nav-link">Companies</a></li>
+            </ul>
+            <h5>Teams <a href="#">What's this ?</a></h5>
+            <a href="#" class="nav-link">
+              <i class="fas fa-briefcase"></i>
+              <span>Free 30 Day Trial</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="#" class="nav-icon">
+          <i class="fab fa-stack-overflow"></i>
+          <div class="nav-icon-text">stack <span class="nav-bold-text">overflow</span>
+          </div>
+        </a>
+      </div>
+      <div class="nav-base-links">
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">For Teams</a></li>
+        </ul>
+      </div>
+      <div class="nav-search">
+        <div class="search-container">
+          <i class="fas fa-search"></i>
+          <input type="text" id="" placeholder="Search...">
+        </div>
+        <div class="search-hints">
+          <div class="search-arrow-up"></div>
+          <div class="search-hint-body">
+            <div class="hints-grid-column">
+              <div class="hint-text"><span>[tag] </span> search within a tag</div>
+              <div class="hint-text"><span>user:1234 </span> search by author</div>
+              <div class="hint-text"><span>"words here"</span> exact phrase </div>
+            </div>
+            <div class="hints-grid-column">
+              <div class="hint-text"><span>answers:0</span> unanswered questions</div>
+              <div class="hint-text"><span> score:3 </span> posts with a 3+ score</div>
+              <div class="hint-text"><span>isaccepted:yes </span> search within status</div>
+            </div>
+          </div>
+          <div class="search-hint-footer">
+            <a href="#" class="btn">Ask a question</a>
+            <a href="#" class="search-help">Search help</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="nav-right-buttons">
+        <div class="search-btn">
+          <i class="fas fa-search"></i>
+        </div>
+
+
+        <a routerLink="login" class="btn btn-login">Log in</a>
+        <a routerLink="register" class="btn btn-register">Sign up</a>
+      </div>
+    </nav>
+  </div>
+</header>

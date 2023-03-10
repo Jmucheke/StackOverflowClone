@@ -1,4 +1,4 @@
-.container{
+.container {
   font-size: 18px;
   height: 90vh;
   width: 90vw;
@@ -7,10 +7,12 @@
   align-items: center;
 }
 
-.content{
+/* Form */
+.form {
+  padding: 1.5rem;
   border-radius: 0.8rem;
   width: 40rem;
-  height: 40rem;
+  height: 42rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,6 +20,46 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.form-group{
+.form-group {
   padding: 1rem;
 }
+
+.form-group input{
+  font-size: 2rem;
+  width: 16em;
+}
+
+.form-group label {
+  font-weight: 700;
+}
+
+/*
+.btn-submit{
+  border: 2px solid red;
+} */
+.btn-primary {
+  font-size: 1.5rem;
+  width: 100%;
+  height: 4.5rem;
+  background-color: var(--blue-500);
+}
+
+.account{
+  padding-top:4rem;
+  font-size: 0.8em;
+  text-align: center;
+}
+.account a{
+  padding-left: 0.3rem;
+  text-decoration: none;
+  color: var(--blue-700);
+
+
+}
+
+.account a:hover{
+  color: var(--blue-500);
+  cursor:pointer;
+}
+
+/* Form end */
