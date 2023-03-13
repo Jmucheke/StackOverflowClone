@@ -1,0 +1,37 @@
+/* summary title */
+.show-qn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.all-qn {
+  padding: 5rem 0 2rem 0;
+  width: 65%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--black-150);
+}
+
+.all-qn h1 {
+  font-weight: 400;
+}
+
+.all-qn button {
+  height: 4rem;
+  width: 10.2rem;
+  background-color: var(--blue-500);
+  color: var(--white);
+  border: none;
+  border-radius: .3rem;
+  font-size: 1.2rem;
+}
+
+.all-qn button:hover {
+  background-color: var(--blue-600);
+}
+
+/* summary title end */

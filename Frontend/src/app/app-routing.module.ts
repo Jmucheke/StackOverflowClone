@@ -51,7 +51,23 @@ const routes: Routes = [
         path: 'edit-profile',
         loadComponent: () =>
           import('./user-profile/edit-profile/edit-profile.component').then((c) => c.EditProfileComponent)
+      },
+      {
+        path: '',
+        loadComponent: () =>
+          import('./user-profile/summary-profile/summary-profile.component').then((c) => c.SummaryProfileComponent)
       }
+      ]
+  },
+  {
+    path: 'admin',
+    loadComponent: () =>
+      import('./admin/admin.component').then((c) => c.AdminComponent), children: [
+        {
+          path: '',
+          loadComponent: () =>
+            import('./admin/users/users.component').then((c) => c.UsersComponent)
+        }
       ]
   },
   {

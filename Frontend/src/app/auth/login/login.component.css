@@ -70,4 +70,9 @@
   cursor: pointer;
 }
 
+.form-group button:disabled {
+  background-color: grey;
+  color: white;
+}
+
 /* Form end */
