@@ -4,10 +4,94 @@ section {
 }
 
 /* All Quetions title */
+.show-qn{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
 .all-qn{
+  padding: 5rem 0 2rem 0;
+  width: 65%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid var(--black-150);
+}
+
+.all-qn h1{
+  font-weight: 400;
+}
+
+.all-qn button{
+  height: 4rem;
+  width: 10.2rem;
+  background-color: var(--blue-500);
+  color: var(--white);
+  border: none;
+  border-radius: .3rem;
+  font-size: 1.2rem;
+}
+.all-qn button:hover{
+  background-color: var(--blue-600);
 }
 /* All Quetions title end */
+
+/* Display question */
+.question{
+  width: 65%;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 8.5rem 3rem 0;
+  border-bottom: 1px solid var(--black-150);
+}
+.qn-summary{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.votes{
+  padding: .9rem 0;
+}
+.votes span, .answers span{
+  padding: 0 0 0 .2rem;
+  text-align: center;
+}
+.question-detail {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.qn-title{
+  padding: .8rem 0;
+}
+.qn-title a{
+  text-decoration: none;
+  font-size: 2rem;
+    color: var(--blue-600);
+    font-weight: 400;
+}
+.qn-title a:hover{
+  cursor:pointer;
+  color: var(--blue-500);
+}
+.btn {
+  background-color: var(--powder);
+  color: var(--blue-700);
+  border: none;
+  padding: 0.8rem 1rem;
+  margin: 0 1rem 0 0 ;
+}
+
+.btn:hover {
+  color: var(--powder-700);
+  background-color: var(--powder-200);
+}
+
+
+
+/* Display question end */
 

@@ -1,0 +1,119 @@
+<section class="show-qn">
+
+  <!--  question title -->
+  <div class="qn">
+    <h1>SQL INSERT with values from dataframe based on conditions</h1>
+    <button>Ask Question</button>
+  </div>
+  <!-- question title end -->
+
+  <!-- Question detail -->
+  <div class="question-detail">
+    <div class="voting">
+      <button>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill"
+          viewBox="0 0 16 16">
+          <path
+            d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+        </svg>
+      </button>
+      <h2>0</h2>
+      <button>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill"
+          viewBox="0 0 16 16">
+          <path
+            d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+        </svg>
+      </button>
+    </div>
+    <div class="question">
+      <div class="details">
+        <p>
+          I have an SQL table that is loaded automatically but sometimes has Null values. I'd like to be able to update
+          this table
+          with values from a dataframe that's loaded from an excel file which may also be incomplete with Null values.
+          table
+          represents what data already is in my database, but there are also columns create_timestamp and
+          edited_timestamp which
+          are populated automatically. Only a and b columns can contain Null values. Also df will have only one value in
+          cond
+          column.
+        </p>
+      </div>
+      <div class="tags">
+        <a class="btn btn-primary" href="#" role="button">Python</a>
+        <a class="btn btn-primary" href="#" role="button">Python</a>
+        <a class="btn btn-primary" href="#" role="button">Python</a>
+        <a class="btn btn-primary" href="#" role="button">Python</a>
+      </div>
+      <div>
+        <button type="button" class="btn btn-link" routerLink="../edit-question">edit</button>
+        <button type="button" class="btn btn-link">delete</button>
+      </div>
+    </div>
+
+  </div>
+  <!-- Question detail end -->
+
+  <!--  answer title -->
+  <div class="ans">
+    <h1>1 Answer</h1>
+  </div>
+  <!-- answer title end -->
+
+  <!-- Answer details -->
+  <div class="answer-detail">
+    <div class="voting">
+      <button>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill"
+          viewBox="0 0 16 16">
+          <path
+            d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z" />
+        </svg>
+      </button>
+      <h2>0</h2>
+      <button>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill"
+          viewBox="0 0 16 16">
+          <path
+            d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+        </svg>
+      </button>
+    </div>
+    <div class="answer">
+      <div class="details">
+        <p>
+          I guess maybe CASE with WHEN THEN can help you to implement the logic.
+          <a href="#">https://www.geeksforgeeks.org/case-function-in-mysql/</a> As far as I know, using triggers in SQL is not the "best practice"
+          pattern.
+        </p>
+      </div>
+      <!-- <div>
+        <button type="button" class="btn btn-link">edit</button>
+        <button type="button" class="btn btn-link">delete</button>
+      </div> -->
+      <div>
+        <a routerLink="comment">add a comment</a>
+      </div>
+    </div>
+
+  </div>
+  <!-- Answer details end -->
+
+  <!-- your answer title -->
+  <div class="ans">
+    <h1>Your Answer</h1>
+  </div>
+  <!-- your answer title end -->
+
+  <!-- Answer Input -->
+  <div class="answer-input">
+    <div>
+      <textarea name="answer" id="answer" cols="30" rows="10"></textarea>
+    </div>
+    <button>Post Your Answer</button>
+  </div>
+  <!-- Answer Input end -->
+
+
+</section>

@@ -1,20 +1,20 @@
 <div class="container">
   <div class="content">
     <div class="form">
-      <form>
+      <form [formGroup]="form" (ngSubmit)="login()">
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" class="form-control" id="email">
+          <input type="email" email class="form-control" id="email" formControlName="email">
         </div>
         <div class="form-group">
           <div class="input-group">
             <label for="password">Password</label>
             <small class="form-text text-muted"><a href="#">Forgot password?</a></small>
           </div>
-          <input type="password" class="form-control" id="password" >
+          <input type="password" class="form-control" id="password" formControlName="password">
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-primary">Log in</button>
+          <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Log in</button>
         </div>
       </form>
     </div>

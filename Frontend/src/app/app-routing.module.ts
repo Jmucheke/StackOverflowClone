@@ -6,14 +6,64 @@ import { HomeComponent } from './home/home.component';
 import { QuestionsComponent } from './questions/questions.component';
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
-  {path:'login',component:LoginComponent},
-  {path:'register',component:RegisterComponent},
   {
-    path: 'questions', component: QuestionsComponent, children: [
-      {}
-    ]
-}
+    path: '',
+    loadComponent: () =>
+      import('./home/home.component').then((c) => c.HomeComponent),
+  },
+  {
+    path:'login',
+    loadComponent:()=>
+      import('./auth/login/login.component').then((c) =>c.LoginComponent)
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./auth/register/register.component').then((c) => c.RegisterComponent)
+  },
+  {
+    path:'questions',
+    loadComponent:()=>
+      import('./questions/questions.component').then((c) => c.QuestionsComponent), children: [
+        {
+          path:'',
+          loadComponent:()=>
+            import('./questions/display-questions/display-questions.component').then((c)=>c.DisplayQuestionsComponent)
+        },
+        {
+          path: 'one-question',
+          loadComponent: () =>
+            import('./questions/one-question/one-question.component').then((c) => c.OneQuestionComponent)
+        },
+      {
+        path: 'edit-question',
+        loadComponent: () =>
+          import('./questions/edit-question/edit-question.component').then((c) => c.EditQuestionComponent)
+      }
+
+      ]
+  },
+  {
+    path: 'user-profile',
+    loadComponent: () =>
+      import('./user-profile/user-profile.component').then((c) => c.UserProfileComponent), children:[
+      {
+        path: 'edit-profile',
+        loadComponent: () =>
+          import('./user-profile/edit-profile/edit-profile.component').then((c) => c.EditProfileComponent)
+      }
+      ]
+  },
+  {
+    path: 'not-found',
+    loadComponent: () =>
+      import('./shared/not-found/not-found.component').then(
+        (c) => c.NotFoundComponent
+      ),
+    data: { message: 'Page not found!' },
+  },
+  { path: '**', redirectTo: '/not-found' },
+
 
 ];
 
