@@ -74,5 +74,10 @@
   background-color: grey;
   color: white;
 }
+.error {
+  color: red;
+  width: 70%;
+
+}
 
 /* Form end */

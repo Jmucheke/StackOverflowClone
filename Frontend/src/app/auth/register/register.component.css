@@ -62,4 +62,14 @@
   cursor:pointer;
 }
 
+.form-group button:disabled {
+  background-color: grey;
+  color: white;
+}
+
+.error {
+  color: red;
+  width: 70%;
+
+}
 /* Form end */
