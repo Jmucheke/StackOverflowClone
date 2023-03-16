@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { Homepage, loginUser, RegisterUser } from "../controllers/user.controller";
+import { loginUser, RegisterUser, getUserProfile, getUserById, updateUserProfile } from "../controllers/user.controller";
 import { VerifyToken } from "../middlewares/auth.middleware";
 
 
@@ -8,6 +8,10 @@ const authrouter = Router()
 
 authrouter.post('/register', RegisterUser)
 authrouter.post('/login', loginUser)
-authrouter.get('/home', VerifyToken, Homepage)//protected Route
+authrouter.get('/profile', getUserProfile)
+authrouter.get('/user/:id', getUserById)
+authrouter.put('/user/update/:id', updateUserProfile)
+// authrouter.get('/home', Homepage)//protected Route
+
 
 export default authrouter

@@ -26,13 +26,13 @@ export class LoginComponent {
 
   login() {
     const user={
-      email: this.form.email.value,
-      password: this.form.password.value
-    } 
+      email: this.form.get('email')!.value,
+      password: this.form.get('password')!.value
+    }
 
     this.store.dispatch(login(user));
     console.log(user);
-    
+
     // this.router.navigate(['questions'])
     this.router.navigate(['/']);
   }
