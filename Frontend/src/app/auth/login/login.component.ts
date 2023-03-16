@@ -4,6 +4,8 @@ import { Router, RouterModule } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { login } from 'src/app/state/actions/login.action';
+import { AppState } from 'src/app/state/app.state';
+import { Login } from 'src/app/shared/interface/interfaces';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,7 @@ import { login } from 'src/app/state/actions/login.action';
 export class LoginComponent {
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder, private store: Store, private router: Router ) {
+  constructor(private fb: FormBuilder, private store: Store<AppState>, private router: Router ) {
     this.form = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
@@ -23,9 +25,16 @@ export class LoginComponent {
   }
 
   login() {
-    const { email, password } = this.form.value;
-    this.store.dispatch(login({ email, password }));
-    this.router.navigate(['questions'])
+    const user={
+      email: this.form.email.value,
+      password: this.form.password.value
+    } 
+
+    this.store.dispatch(login(user));
+    console.log(user);
+    
+    // this.router.navigate(['questions'])
+    this.router.navigate(['/']);
   }
 
 }

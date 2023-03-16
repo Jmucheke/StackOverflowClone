@@ -34,7 +34,7 @@
           </div>
         </div>
 
-        <a href="#" class="nav-icon">
+        <a routerLink="" class="nav-icon">
           <i class="fab fa-stack-overflow"></i>
           <div class="nav-icon-text">stack <span class="nav-bold-text">overflow</span>
           </div>
@@ -79,8 +79,8 @@
         </div>
 
 
-        <a routerLink="login" class="btn btn-login">Log in</a>
-        <a routerLink="register" class="btn btn-register">Sign up</a>
+        <a *ngIf="!(isAuthenticated$ |async)" routerLink="login" class="btn btn-login">Log in</a>
+        <a *ngIf="!(isAuthenticated$ |async)" routerLink="register" class="btn btn-register">Sign up</a>
       </div>
     </nav>
   </div>

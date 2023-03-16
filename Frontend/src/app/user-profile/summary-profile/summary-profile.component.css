@@ -1,7 +1,6 @@
 /* summary title */
 .show-qn {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 
@@ -13,7 +12,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid var(--black-150);
 }
 
 .all-qn h1 {

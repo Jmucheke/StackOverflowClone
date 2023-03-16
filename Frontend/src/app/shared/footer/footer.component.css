@@ -139,3 +139,43 @@ img {
 }
 
 /* End Footer */
+
+/* Media Queries */
+@media screen and (max-width: 850px) {
+  .hire-content {
+    grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .footer-content {
+    flex-wrap: wrap;
+  }
+
+  .social-media {
+    margin-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 810px) {
+
+  .teams-footer {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .footer-icon {
+    display: none;
+  }
+
+  .footer-links-title a {
+    font-size: 1.1rem;
+  }
+
+  .footer-link {
+    font-size: 1.1rem;
+  }
+}
+
+/* End Media Queries */

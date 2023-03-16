@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { QuestionsComponent } from './questions/questions.component';
+import { GuardService } from './shared/services/guards/guard.service';
 
 const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
       import('./home/home.component').then((c) => c.HomeComponent),
+    canActivate: [GuardService],
   },
   {
     path:'login',
@@ -39,6 +41,11 @@ const routes: Routes = [
         path: 'edit-question',
         loadComponent: () =>
           import('./questions/edit-question/edit-question.component').then((c) => c.EditQuestionComponent)
+      },
+      {
+        path: 'ask-question',
+        loadComponent: () =>
+          import('./questions/ask-question/ask-question.component').then((c) => c.AskQuestionComponent)
       }
 
       ]
