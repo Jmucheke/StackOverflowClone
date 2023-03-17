@@ -10,7 +10,7 @@ authrouter.post('/register', RegisterUser)
 authrouter.post('/login', loginUser)
 authrouter.get('/profile', getUserProfile)
 authrouter.get('/user/:id', getUserById)
-authrouter.put('/user/update/:id', updateUserProfile)
+authrouter.patch('/update/:id', updateUserProfile)
 // authrouter.get('/home', Homepage)//protected Route
 
 

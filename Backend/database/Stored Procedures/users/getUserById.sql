@@ -1,4 +1,4 @@
-CREATE PROCEDURE uspGetUserById
+CREATE OR ALTER PROCEDURE uspGetUserById
     (@id Varchar(100))
 AS
 BEGIN

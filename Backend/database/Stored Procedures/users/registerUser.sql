@@ -1,4 +1,4 @@
-CREATE PROCEDURE uspRegisterUser(
+CREATE OR ALTER PROCEDURE uspRegisterUser(
     @id VARCHAR(100),
     @name VARCHAR(255),
     @email VARCHAR(255),

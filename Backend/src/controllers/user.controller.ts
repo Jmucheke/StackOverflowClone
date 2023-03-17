@@ -1,3 +1,4 @@
+import { UpdateSchema } from './../helpers/user.helper';
 import { RequestHandler, Request, Response } from 'express'
 import { v4 as uid } from 'uuid'
 import { LoginSchema, RegistrationSchema } from '../helpers/user.helper'
@@ -12,7 +13,7 @@ const _db = new DatabaseHelper()
 dotenv.config({ path: path.resolve(__dirname, '../../.env') })
 
 interface ExtendedRequest extends Request {
- body: { id:string, Name: string, Email: string, Password: string, ConfirmPassword: string },
+ body: { name: string, email: string, password: string, confirmPassword: string },
  params:{id:string}
  info?: DecodedData
 }
@@ -21,14 +22,14 @@ interface ExtendedRequest extends Request {
 export async function RegisterUser(req: ExtendedRequest, res: Response) {
  try {
   const id = uid()
-  const { Name, Email, Password } = req.body
+  const { name, email, password } = req.body
   const { error } = RegistrationSchema.validate(req.body)
   if (error) {
    return res.status(422).json(error.details[0].message)
   }
-  const hashedPassword = await Bcrypt.hash(Password, 10)
+  const hashedPassword = await Bcrypt.hash(password, 10)
   ///check if email exist
-  await _db.exec('uspRegisterUser', { id, name: Name, email: Email, password: hashedPassword })
+  await _db.exec('uspRegisterUser', { id, name: name, email: email, password: hashedPassword })
   return res.status(201).json({ message: 'User registered' })
 
  }
@@ -42,19 +43,19 @@ export async function RegisterUser(req: ExtendedRequest, res: Response) {
 
 export const loginUser = async(req: ExtendedRequest, res: Response)=> {
  try {
-  const { Email, Password } = req.body
+  const { email, password } = req.body
   const { error } = LoginSchema.validate(req.body)
   if (error) {
    return res.status(422).json(error.details[0].message)
   }
 
-  const user = await (await _db.exec('uspGetUserByEmail', { email: Email })).recordset
+  const user = await (await _db.exec('uspGetUserByEmail', { email: email })).recordset
   
   if (!user[0]) {
    return res.status(404).json('User Not found')
   }
   console.log(user);
-  const valid = await Bcrypt.compare(Password, user[0].password)
+  const valid = await Bcrypt.compare(password, user[0].password)
   if (!valid) {  
    
    return res.status(404).json('User Not found')
@@ -99,8 +100,8 @@ export const getUserProfile = async (req: ExtendedRequest, res: Response) => {
 export const getUserById = async (req: ExtendedRequest, res: Response) => {
 
  try {
-  const userId = req.params.id
-  const user = await _db.exec("uspGetUserById", { id: userId });
+  const id = req.params.id
+  const user = await _db.exec("uspGetUserById", { id: id });
 
   if (user.recordset.length > 0) {
    const { id, name, email, isAdmin } = user.recordset[0];
@@ -121,17 +122,23 @@ export const updateUserProfile = async (
  res: Response
 ) => {
 
- const userId = req.params.id
- const { Name, Email, Password } = req.body;
+ 
 
  try {
-  // If user tries to update email that already exists in the database
-  // i.e another user exists with the same email that's not the current user
-  const otherUser = await _db.exec("uspGetUserByEmail", { Email });
+   const id = req.params.id
+   const { name, email, password } = req.body;
+   const { error } = UpdateSchema.validate(req.body)
+   
+   
+   if (error) {
+     return res.status(422).json(error.details[0].message)
+   }
+   const otherUser = await _db.exec("uspGetUserByEmail", { email });
+   
 
   // check if otherUser is not the current user
   if (otherUser.recordset.length > 0) {
-   if (otherUser.recordset[0].id !== userId) {
+   if (otherUser.recordset[0].id !== id) {
     return res.status(400).json({
      message:
       "Another user with a similar email already exists, please try another email",
@@ -139,22 +146,27 @@ export const updateUserProfile = async (
    }
   }
 
-  const user = await _db.exec("uspGetUserById", { id: userId });
+  const user = await _db.exec("uspGetUserById", { id});
+  //  const { Name, Email, Password } = req.body;
+  
+  
 
   if (user.recordset.length > 0) {
-   const passwordHash = await Bcrypt.hash(Password, 10);
+    console.log(req.body);
+    
+   const hashedPassword = await Bcrypt.hash(password, 10);
 
    const updatedUser = await _db.exec("uspUpdateUser", {
-    id: userId,
-    Name,
-    Email,
-    Password: passwordHash,
+    id: id,
+    name,
+    email,
+    password: hashedPassword,
    });
 
    if (updatedUser.recordset.length > 0) {
-    const { id, Name, Email, isAdmin } = updatedUser.recordset[0];
+    const { id, name, email, isAdmin } = updatedUser.recordset[0];
 
-    return res.status(200).json({ id, Name, Email, isAdmin });
+    return res.status(200).json({ id, name, email, isAdmin });
    } else {
     return res.status(400).json({ message: "User profile update failed" });
    }

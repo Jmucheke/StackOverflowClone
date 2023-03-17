@@ -1,4 +1,4 @@
-CREATE PROCEDURE uspGetUserByEmail
+CREATE OR ALTER PROCEDURE uspGetUserByEmail
     (@email VARCHAR(255))
 AS
 BEGIN

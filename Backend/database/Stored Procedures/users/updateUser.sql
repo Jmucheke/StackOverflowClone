@@ -1,7 +1,7 @@
 -- DROP PROCEDURE IF EXISTS uspUpdateUser;
 
-CREATE PROCEDURE uspUpdateUser(
-    @id INT,
+CREATE OR ALTER PROCEDURE uspUpdateUser(
+    @id NVARCHAR(100),
     @name NVARCHAR(255) = NULL,
     @email NVARCHAR(255) = NULL,
     @password NVARCHAR(255) = NULL,

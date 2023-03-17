@@ -1,0 +1,16 @@
+try {
+  const id = uid()
+  const { Name, Email, Password } = req.body
+  const { error } = RegistrationSchema.validate(req.body)
+  if (error) {
+   return res.status(422).json(error.details[0].message)
+  }
+  const hashedPassword = await Bcrypt.hash(Password, 10)
+  ///check if email exist
+  await _db.exec('uspRegisterUser', { id, name: Name, email: Email, password: hashedPassword })
+  return res.status(201).json({ message: 'User registered' })
+
+ }
+ catch (error) {
+  res.status(500).json(error)
+ }

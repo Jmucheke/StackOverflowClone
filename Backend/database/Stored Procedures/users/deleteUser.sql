@@ -1,4 +1,4 @@
-CREATE PROCEDURE uspDeleteUser
+CREATE OR ALTER PROCEDURE uspDeleteUser
     (@id INT)
 AS
 BEGIN
