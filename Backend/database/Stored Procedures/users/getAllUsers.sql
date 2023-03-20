@@ -1,6 +1,6 @@
--- DROP PROCEDURE IF EXISTS usp_GetAllUsers;
+-- DROP PROCEDURE IF EXISTS uspGetAllUsers;
 
-CREATE OR ALTER PROCEDURE usp_GetAllUsers
+CREATE OR ALTER PROCEDURE uspGetAllUsers
 AS
 BEGIN
     SELECT id, name, email, isAdmin, isDeleted, createdAt, updatedAt

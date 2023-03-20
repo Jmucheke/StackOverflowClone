@@ -178,14 +178,128 @@ export const updateUserProfile = async (
  }
 };
 
-// Homepage
+// Get all users
 
-// export async function Homepage(req: ExtendedRequest, res: Response) {
-//  try {
-//   if (req.info) {
-//    return res.status(200).json(`Welcome ${req.info.Name}`)
+export const getAllUsers = async (req: Request, res: Response) => {
+  try {
+    const users = await _db.exec("uspGetAllUsers");
+
+    // returns the users else if ther's none yet an empty array is returned
+    return res.status(200).json(users.recordset);
+  } catch (error: any) {
+    res.status(500).json(error.message);
+  }
+};
+
+// // Forgot password
+
+// export const forgotPassword = async (req: Request, res: Response) => {
+//   const { error } = UserForgotPasswordDto.validate(req.body);
+
+//   if (error) {
+//     return res.status(422).json(error.details[0].message);
 //   }
-//  } catch (error) {
 
-//  }
-// }
+//   const userEmail = req.body.email;
+
+//   try {
+//     const user = await dbUtils.exec("usp_FindUserByEmail", {
+//       email: userEmail,
+//     });
+
+//     if (user.recordset.length === 0) {
+//       return res
+//         .status(404)
+//         .json({ message: "User with provided email does not exist" });
+//     }
+
+//     const { id, name, email, isAdmin } = user.recordset[0];
+
+//     const JWT = generateJWT({ id, name, email, isAdmin } as IJWTPayload, "1h");
+
+//     const resetUrl = `${process.env.CLIENT_URL}/reset-password/?resetToken=${JWT}`;
+
+//     const passwordResetMsg = `
+//       <h1>You requested a password reset</h1>
+//       <p>Please go to this link to reset your password</p>
+//       <a href=${resetUrl} clicktracking=off>${resetUrl}</a>
+//       <p>If you did not request this, please ignore this email</p>
+//     `;
+
+//     try {
+//       await sendEmail("Password Reset Request", email, passwordResetMsg);
+
+//       return res.status(200).json({
+//         message: "We have sent a link to reset your password to your email",
+//         resetUrl,
+//       });
+//     } catch (error: any) {
+//       CreateLog.error(error);
+//       return res.status(500).json({ message: "Email could not be sent" });
+//     }
+//   } catch (error: any) {
+//     res.status(500).json(error.message);
+//     CreateLog.error(error);
+//   }
+// };
+
+
+//   //  Reset password
+
+// export const resetPassword = async (req: IRequestWithUser, res: Response) => {
+//   const { error } = UserPasswordResetDto.validate(req.body);
+
+//   if (error) {
+//     return res.status(422).json(error.details[0].message);
+//   }
+
+//   const password = req.body.password as string;
+
+//   try {
+//     const { id, name, email, isAdmin } = req.user as IUser;
+
+//     const passwordHash = await Bcrypt.hash(password, 10);
+
+//     const updatedUser = await dbUtils.exec("usp_UpdateUser", {
+//       id,
+//       name,
+//       email,
+//       password: passwordHash,
+//       isAdmin,
+//     });
+
+//     if (updatedUser.recordset.length > 0) {
+//       const { id, name, email, isAdmin } = updatedUser.recordset[0];
+
+//       //password reset was successful email
+//       const subject = "Password Reset Successful";
+//       const html = `<h1>Password Reset Successful</h1>
+//       <p>Dear ${name},</p>
+//       <p>Your password has been reset successfully.</p>
+//       <P>Happy <a href=${process.env.CLIENT_URL}>Shopping</a> 🎉</P>
+//       <p>If you did not request this, please contact us immediately.</p>
+//       <p>Regards,<br/>GadgetHub Team</p>`;
+
+//       sendEmail(subject, email, html);
+
+//       const JWT = generateJWT(
+//         {
+//           id,
+//           name,
+//           email,
+//           isAdmin,
+//         } as IJWTPayload,
+//         "1d"
+//       );
+
+//       return res.status(200).json({ id, name, email, isAdmin, JWT });
+//     } else {
+//       return res.status(400).json({
+//         message: "Password reset failed, please request a new password reset",
+//       });
+//     }
+//   } catch (error: any) {
+//     res.status(500).json(error.message);
+//     CreateLog.error(error);
+//   }
+// };

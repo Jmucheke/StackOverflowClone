@@ -1,0 +1,8 @@
+-- DROP PROCEDURE IF EXISTS uspGetAllComments;
+
+CREATE OR ALTER PROCEDURE uspGetAllComments
+AS
+BEGIN
+    SELECT *
+    FROM comments
+END

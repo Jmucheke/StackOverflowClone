@@ -1,0 +1,8 @@
+-- DROP PROCEDURE IF EXISTS uspGetAllAnswers;
+
+CREATE OR ALTER PROCEDURE uspGetAllAnswers
+AS
+BEGIN
+    SELECT *
+    FROM answers
+END
