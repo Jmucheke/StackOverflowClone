@@ -1,18 +1,9 @@
-import { Login } from './../../shared/interface/interfaces';
 import { createReducer, on } from '@ngrx/store';
-import { login, loginSuccess } from '../actions/auth.actions';
+import { login, loginFail, loginSuccess } from '../actions/auth.actions';
+import { User } from 'src/app/shared/services/auth/user.modal';
+import { initialState } from '../auth.state';
 
-export interface AuthState {
-  isLoggedIn: boolean;
-  error: any;
-  user: Login | null;
-}
-
-export const initialState: AuthState = {
-  isLoggedIn: false,
-  error: null,
-  user: null,
-};
+// 
 
 export const authReducer = createReducer(
   initialState,
@@ -22,14 +13,16 @@ export const authReducer = createReducer(
       isLoggedIn: false,
     };
   }),
-  on(loginSuccess, (state) => {
+  on(loginSuccess, (state, action) => {
+    console.log(action);
+    
     return {
       ...state,
       isLoggedIn: true,
-      error: null,
+      user:action.user
     };
   }),
-  // on(loginFailure, (state, {error}) => {
+  // on(loginFail, (state, {error}) => {
   //   return {
   //     ...state,
   //     isLoggedIn: false,

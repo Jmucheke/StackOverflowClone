@@ -4,7 +4,6 @@ import { FooterComponent } from '../shared/footer/footer.component';
 import { RouterModule } from '@angular/router';
 // import { selectLoggedIn } from '../state/selectors/loginState';
 import { Store } from '@ngrx/store';
-import { AppState } from '../state/app.state';
 
 @Component({
   selector: 'app-questions',

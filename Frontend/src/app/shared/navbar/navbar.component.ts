@@ -4,10 +4,9 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { UserService } from '../services/user.service';
 import { IUserProfile } from '../interface/interfaces';
-import {isLoggedIn, selectUser } from 'src/app/state/selectors/auth.selectors';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/state/app.state';
+import { AppState } from '../store/app.state';
 
 @Component({
   selector: 'app-navbar',
@@ -16,7 +15,7 @@ import { AppState } from 'src/app/state/app.state';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit {
   user?: IUserProfile;
   isOpen = false
   isLoggedIn$!: Observable<boolean>;
@@ -31,7 +30,7 @@ export class NavbarComponent implements OnInit{
 
   isAuthenticated$?: Observable<boolean>;
 
-  constructor(public authService: AuthService, private store: Store<AppState>){
+  constructor(public authService: AuthService, private store: Store<AppState>) {
 
   }
   ngOnInit(): void {
@@ -42,12 +41,12 @@ export class NavbarComponent implements OnInit{
     //   });
     // }
 
-    this.isLoggedIn$ = this.store.select(isLoggedIn);
-    // this.user$ = this.store.select(selectUser);
+    // this.isLoggedIn$ = this.store.select(isLoggedIn);
+    // // this.user$ = this.store.select(selectUser);
 
-    this.isLoggedIn$.subscribe((isLoggedIn) => {
-      this.loggedIn = isLoggedIn;
-    });
+    // this.isLoggedIn$.subscribe((isLoggedIn) => {
+    //   this.loggedIn = isLoggedIn;
+    // });
   }
 
 }

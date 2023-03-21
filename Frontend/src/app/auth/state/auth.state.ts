@@ -1,10 +1,11 @@
-import { Login } from "../shared/interface/interfaces";
+import { User } from "src/app/shared/services/auth/user.modal";
+
 
 
 export interface AuthState {
   isLoggedIn: boolean;
   error: any;
-  user: Login|null;
+  user: User|null;
 }
 
 export const initialState: AuthState = {

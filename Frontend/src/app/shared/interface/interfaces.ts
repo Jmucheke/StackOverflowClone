@@ -14,6 +14,12 @@ export interface Login {
   isAdmin?: boolean;
 }
 
+export interface authResponseData{
+  email:string,
+  name:string,
+  token:string
+}
+
 export interface IUserProfile {
   id: number;
   name: string;

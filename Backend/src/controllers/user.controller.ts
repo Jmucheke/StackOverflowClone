@@ -68,7 +68,7 @@ export const loginUser = async(req: ExtendedRequest, res: Response)=> {
   const token = jwt.sign(payload[0], process.env.SECRETKEY as string, { expiresIn: '3600s' })
   console.log(token);
   
-  return res.status(200).json({message: `${user[0].name} Loggedin!!!`, token })
+   return res.status(200).json({ name: `${user[0].name}`, email: `${user[0].email}`, token })
 
  } catch (error) {
   console.log(error)

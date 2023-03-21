@@ -1,6 +1,6 @@
 import { LoginState } from "../reducers/login.reducer";
 import { createSelector } from '@ngrx/store';
-import { AppState } from "../app.state";
+import { AppState } from "../../shared/state/app.state";
 
 // export const selectLoginState = (state: AppState) => state.login;
 

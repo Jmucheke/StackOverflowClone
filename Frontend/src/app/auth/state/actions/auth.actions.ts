@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { User } from 'src/app/shared/services/auth/user.modal';
 
 
 export const LOGIN = '[Auth]  login start';
@@ -10,8 +11,14 @@ export const login = createAction(
   props<{email:string; password:string}>()
 )
 
-export const loginSuccess = createAction(LOGIN_SUCCESS)
-export const loginFail = createAction(LOGIN_FAIL)
+export const loginSuccess = createAction(
+  LOGIN_SUCCESS,
+  props<{user:User}>()
+  )
+export const loginFail = createAction(
+  LOGIN_FAIL, 
+  props<{error: any}>
+  )
 
 
 export const logout = createAction('[Auth] Logout');
