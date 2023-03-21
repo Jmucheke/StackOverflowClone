@@ -1,20 +1,17 @@
-import { Login } from './../../shared/interface/interfaces';
 import { createAction, props } from '@ngrx/store';
 
+
+export const LOGIN = '[Auth]  login start';
+export const LOGIN_SUCCESS = '[Auth]  login success';
+export const LOGIN_FAIL = '[Auth]  login fail';
+
 export const login = createAction(
-  '[Auth] Login',
-  props<{ user:any }>()
+  LOGIN,
+  props<{email:string; password:string}>()
+)
 
-);
+export const loginSuccess = createAction(LOGIN_SUCCESS)
+export const loginFail = createAction(LOGIN_FAIL)
 
-export const loginSuccess = createAction(
-  '[Auth] Login Success',
-  props<{ user: Login }>()
-  );
-
-export const loginFailure = createAction(
-  '[Auth] Login Failure',
-  props<{ error: any }>()
-);
 
 export const logout = createAction('[Auth] Logout');

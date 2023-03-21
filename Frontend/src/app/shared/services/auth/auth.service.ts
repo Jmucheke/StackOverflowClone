@@ -15,36 +15,36 @@ export class AuthService {
 
   constructor(private http: HttpClient, private store:Store<AppState>) { }
 
-  login(user:Login): Observable<{ token: string }> {
+  login(email:string, password:string): Observable<{ token: string }> {
     return this.http
-      .post<{ token: string }>('http://localhost:4000/auth/login',user)
+      .post<{ token: string }>('http://localhost:4000/users/login', {email, password})
       .pipe(tap((response) => {
         localStorage.setItem('token', response.token)
-        this.store.dispatch(login(user))
+        this.store.dispatch(login({email, password}))
   })
       );
   }
 
-  logout(): void {
-    localStorage.removeItem('token');
-    this.store.dispatch(logout())
-  }
+  // logout(): void {
+  //   localStorage.removeItem('token');
+  //   this.store.dispatch(logout())
+  // }
 
-  getToken(): string | null {
-    return localStorage.getItem('token');
-  }
+  // getToken(): string | null {
+  //   return localStorage.getItem('token');
+  // }
 
-  isAuthenticated(): boolean {
-    const token = this.getToken
-    return !!this.getToken();
-  }
+  // isAuthenticated(): boolean {
+  //   const token = this.getToken
+  //   return !!this.getToken();
+  // }
 
   // getUser(): Observable<User> {
   //   return this.http.get<User>('http://localhost:4000/auth/register');
   // }
 
 
-  
+
 
 
 }

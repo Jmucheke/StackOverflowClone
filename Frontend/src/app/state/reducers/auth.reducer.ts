@@ -1,6 +1,6 @@
 import { Login } from './../../shared/interface/interfaces';
 import { createReducer, on } from '@ngrx/store';
-import * as AuthActions from '../actions/auth.actions';
+import { login, loginSuccess } from '../actions/auth.actions';
 
 export interface AuthState {
   isLoggedIn: boolean;
@@ -16,31 +16,30 @@ export const initialState: AuthState = {
 
 export const authReducer = createReducer(
   initialState,
-  on(AuthActions.login, (state) => {
+  on(login, (state) => {
     return {
       ...state,
       isLoggedIn: false,
     };
   }),
-  on(AuthActions.loginSuccess, (state, {user}) => {
+  on(loginSuccess, (state) => {
     return {
       ...state,
       isLoggedIn: true,
       error: null,
-      user,
     };
   }),
-  on(AuthActions.loginFailure, (state, {error}) => {
-    return {
-      ...state,
-      isLoggedIn: false,
-      error,
-    };
-  }),
-  on(AuthActions.logout, (state) => {
-    return {
-      ...state,
-      isLoggedIn: false,
-    };
-  })
+  // on(loginFailure, (state, {error}) => {
+  //   return {
+  //     ...state,
+  //     isLoggedIn: false,
+  //     error,
+  //   };
+  // }),
+  // on(AuthActions.logout, (state) => {
+  //   return {
+  //     ...state,
+  //     isLoggedIn: false,
+  //   };
+  // })
 );

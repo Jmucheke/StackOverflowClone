@@ -1,3 +1,4 @@
+import { AuthEffects } from './state/effects/auth.effects';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -28,7 +29,7 @@ import { authReducer } from './state/reducers/auth.reducer';
         FormsModule,
         StoreModule.forRoot({auth: authReducer} ),
         NavbarComponent,
-        EffectsModule.forRoot([]),
+      EffectsModule.forRoot([AuthEffects]),
     ]
 })
 export class AppModule { }

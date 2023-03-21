@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { login } from 'src/app/state/actions/login.action';
+import { login } from 'src/app/state/actions/auth.actions';
 import { AppState } from 'src/app/state/app.state';
 import { Login } from 'src/app/shared/interface/interfaces';
 
@@ -14,24 +14,24 @@ import { Login } from 'src/app/shared/interface/interfaces';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder, private store: Store<AppState>, private router: Router ) {
+  constructor(private fb: FormBuilder, private store: Store<AppState>, private router: Router ) {}
+
+  ngOnInit(): void {
     this.form = this.fb.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
 
   login() {
-    const user={
-      email: this.form.get('email')!.value,
-      password: this.form.get('password')!.value
-    }
+      const email= this.form.get('email')!.value
+      const password =  this.form.get('password')!.value
 
-    this.store.dispatch(login(user));
-    console.log(user);
+    this.store.dispatch(login({email,password}));
+    // console.log(user);
 
     // this.router.navigate(['questions'])
     this.router.navigate(['/']);
