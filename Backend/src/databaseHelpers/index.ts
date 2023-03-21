@@ -8,7 +8,7 @@ export class DatabaseHelper {
   this.pool = mssql.connect(sqlConfig)
  }
  //let data= {name:'Jesse', age:10}
- createRequest(request: mssql.Request, data: { [x: string]: string }) {
+ createRequest(request: mssql.Request, data: { [x: string]: string|number }) {
   const keys = Object.keys(data)//['name', 'age']
   keys.map(keyName => {
    request.input(keyName, data[keyName]) // input(name, jesse) //input(age,10)
@@ -19,7 +19,7 @@ export class DatabaseHelper {
   return request
  }
 
- async exec(storedProcedure: string, data: { [x: string]: string } = {}) {
+ async exec(storedProcedure: string, data: { [x: string]: string|number } = {}) {
   let emptyRequest = await (await this.pool).request()// empty request// await pool.request()
   let request = this.createRequest(emptyRequest, data) //request with inputs 
   //request().input(name,'jesse').input(age,10)

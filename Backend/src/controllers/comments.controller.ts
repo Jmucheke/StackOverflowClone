@@ -1,7 +1,7 @@
 import { commentSchema, updateCommentSchema } from './../helpers/comments.helper';
 import { Request, Response } from 'express'
 import { DatabaseHelper } from '../databaseHelpers'
-import { DecodedData } from '../models/answers.model'
+import { DecodedData } from '../models/index'
 
 const _db = new DatabaseHelper()
 interface ExtendedRequest extends Request {
@@ -9,25 +9,24 @@ interface ExtendedRequest extends Request {
   id: number,
   comment: string, userId: string, answerId: string
  },
- // params: { id: number },
  info?: DecodedData
 }
 
 // Add Comment
 export const addComment = async (req: ExtendedRequest, res: Response) => {
  try {
-  // const { Id: userId } = req.user as User 
-  const { comment, userId, answerId } = req.body
+  const { comment, answerId } = req.body
 
   const { error } = commentSchema.validate(req.body)
 
   if (error) {
    return res.status(422).json(error.details[0].message)
   }
+  if(req.info){
   await _db.exec('uspAddComment',
-   { comment, userId, answerId })
+   { comment, userId: req.info!.id, answerId })
 
-  return res.status(201).json({ message: 'Comment Added Successfully' })
+  return res.status(201).json({ message: 'Comment Added Successfully' })}
  }
  catch (error) {
   return res.status(500).json(error)
@@ -37,7 +36,6 @@ export const addComment = async (req: ExtendedRequest, res: Response) => {
 // Get one Comment
 export const getCommentById = async (req: ExtendedRequest, res: Response) => {
  const { id } = req.params;
- // const { Id: userId } = req.user as User;
 
  try {
   const comment = await _db.exec("uspGetCommentById", { id });

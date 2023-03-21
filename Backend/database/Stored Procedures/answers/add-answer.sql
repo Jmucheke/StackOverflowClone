@@ -7,7 +7,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- insert new order item record
+    
     INSERT INTO answers (questionId,description,code,userId)
     VALUES (@questionId,@description,@code,@userId);
 END

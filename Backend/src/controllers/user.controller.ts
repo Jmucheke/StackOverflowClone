@@ -2,7 +2,7 @@ import { UpdateSchema } from './../helpers/user.helper';
 import { RequestHandler, Request, Response } from 'express'
 import { v4 as uid } from 'uuid'
 import { LoginSchema, RegistrationSchema } from '../helpers/user.helper'
-import { DecodedData, User } from '../models/user.model'
+import { DecodedData, User } from '../models/index'
 import Bcrypt from 'bcrypt'
 import dotenv from 'dotenv'
 import path from 'path'
@@ -54,7 +54,7 @@ export const loginUser = async(req: ExtendedRequest, res: Response)=> {
   if (!user[0]) {
    return res.status(404).json('User Not found')
   }
-  console.log(user);
+
   const valid = await Bcrypt.compare(password, user[0].password)
   if (!valid) {  
    
@@ -152,7 +152,6 @@ export const updateUserProfile = async (
   
 
   if (user.recordset.length > 0) {
-    console.log(req.body);
     
    const hashedPassword = await Bcrypt.hash(password, 10);
 
@@ -177,6 +176,24 @@ export const updateUserProfile = async (
   res.status(500).json(error.message);
  }
 };
+
+// Delete user
+export const deleteUser = async (req: ExtendedRequest, res: Response) => {
+
+  const id = req.params.id;
+  try {
+    const Question = await (
+      await _db.exec('uspGetUserById', { id })
+    ).recordset[0]
+    if (Question) {
+      await _db.exec('uspDeleteUser', { id })
+      return res.status(200).json({ message: 'Deleted successfully' })
+    }
+    return res.status(404).json({ error: 'User Not Found' })
+  } catch (error: any) {
+    res.status(500).json(error.message)
+  }
+}
 
 // Get all users
 

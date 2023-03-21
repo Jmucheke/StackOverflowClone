@@ -1,5 +1,5 @@
 CREATE OR ALTER PROCEDURE uspDeleteUser
-    (@id INT)
+    (@id NVARCHAR(100))
 AS
 BEGIN
     DELETE 

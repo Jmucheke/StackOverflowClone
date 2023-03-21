@@ -4,11 +4,11 @@ import { VerifyToken } from "../middlewares/auth.middleware";
 
 const answerRoutes = Router()
 
-answerRoutes.post('/', addAnswer)
-answerRoutes.get('/:id', getAnswerById)
-answerRoutes.get('/', getAllAnswers)
-answerRoutes.delete('/:id', deleteAnswer)
-answerRoutes.patch('/:id', updateAnswer)
+answerRoutes.post('/',VerifyToken, addAnswer)
+answerRoutes.get('/:id', VerifyToken, getAnswerById)
+answerRoutes.get('/', VerifyToken, getAllAnswers)
+answerRoutes.delete('/:id',VerifyToken, deleteAnswer)
+answerRoutes.patch('/:id', VerifyToken, updateAnswer)
 
 
 export default answerRoutes

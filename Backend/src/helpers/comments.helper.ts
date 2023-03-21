@@ -8,10 +8,6 @@ export const commentSchema = Joi.object({
  answerId: Joi.string().required().
   messages({
    'string.empty': 'Please add the answerId'
-  }),
- userId: Joi.string().required().
-  messages({
-   'string.empty': 'Please add a userId'
   })
 
 })

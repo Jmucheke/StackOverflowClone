@@ -4,11 +4,11 @@ import { VerifyToken } from "../middlewares/auth.middleware";
 
 const commentsRoutes = Router()
 
-commentsRoutes.post('/', addComment)
-commentsRoutes.get('/:id', getCommentById)
-commentsRoutes.get('/', getAllComments)
-commentsRoutes.delete('/:id', deleteComment)
-commentsRoutes.patch('/:id', updateComment)
+commentsRoutes.post('/', VerifyToken, addComment)
+commentsRoutes.get('/:id', VerifyToken, getCommentById)
+commentsRoutes.get('/', VerifyToken, getAllComments)
+commentsRoutes.delete('/:id', VerifyToken, deleteComment)
+commentsRoutes.patch('/:id', VerifyToken, updateComment)
 
 
 export default commentsRoutes

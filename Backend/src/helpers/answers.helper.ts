@@ -9,10 +9,6 @@ export const answerSchema = Joi.object({
   messages({
    'string.empty': 'Please add a code'
   }),
- userId: Joi.string().required().
-  messages({
-   'string.empty': 'Please add a userId'
-  }),
   questionId: Joi.string().required().
   messages({
    'string.empty': 'Please add a userId'

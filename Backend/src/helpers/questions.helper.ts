@@ -13,10 +13,6 @@ export const questionSchema = Joi.object({
   messages({
    'string.empty': 'Please add a code'
   }),
- userId: Joi.string().required().
-  messages({
-   'string.empty': 'Please add a userId'
-  }),
   tagName: Joi.string().required().
     messages({
       'string.empty': 'Please add a tagName'

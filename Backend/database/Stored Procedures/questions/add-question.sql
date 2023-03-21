@@ -10,7 +10,6 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- insert new order item record
     INSERT INTO questions (id,title,description,code,userId,tagName)
     VALUES (@id,@title,@description,@code,@userId,@tagName);
 END
