@@ -1,4 +1,4 @@
-import { User } from "src/app/shared/services/auth/user.modal";
+import { User } from "../service/user.modal";
 
 
 

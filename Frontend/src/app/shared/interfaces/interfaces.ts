@@ -17,7 +17,8 @@ export interface Login {
 export interface authResponseData{
   email:string,
   name:string,
-  token:string
+  token:string,
+  expiresIn:string
 }
 
 export interface IUserProfile {
@@ -25,4 +26,13 @@ export interface IUserProfile {
   name: string;
   email: string;
   isAdmin: boolean;
+}
+
+export interface Question {
+  id: string, 
+  title: string,
+  description: string, 
+  code: string, 
+  userId: string, 
+  tagName: string
 }

@@ -1,7 +1,8 @@
 .container {
+  padding:5rem 0;
   font-size: 18px;
-  height: 90vh;
-  width: 90vw;
+  /* height: 90vh;
+  width: 90vw; */
   display: flex;
   justify-content: center;
   align-items: center;

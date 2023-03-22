@@ -76,12 +76,26 @@
       <div class="nav-right-buttons">
         <div class="search-btn">
           <i class="fas fa-search"></i>
+        </div>        
+
+
+        <a *ngIf="!(isAuthenticated |async)" routerLink="login" class="btn btn-login">Log in</a>
+        <a *ngIf="!(isAuthenticated |async)" routerLink="register" class="btn btn-register">Sign up</a>
+        <div *ngIf="isAuthenticated |async" class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Dropdown button
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
         </div>
-
-
-        <a *ngIf="!(isAuthenticated$ |async)" routerLink="login" class="btn btn-login">Log in</a>
-        <a *ngIf="!(isAuthenticated$ |async)" routerLink="register" class="btn btn-register">Sign up</a>
+        <a *ngIf="isAuthenticated |async" class="btn btn-register" (click)="onLogout($event)">Logout</a>
       </div>
     </nav>
+    
+    
   </div>
 </header>

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { AuthService } from '../services/auth/auth.service';
-import { UserService } from '../services/user.service';
-import { IUserProfile } from '../interface/interfaces';
+import { IUserProfile } from '../interfaces/interfaces';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
+import { isAuthenticated } from 'src/app/auth/state/selectors/auth.selectors';
+import { logout } from 'src/app/auth/state/actions/auth.actions';
 
 @Component({
   selector: 'app-navbar',
@@ -18,9 +18,9 @@ import { AppState } from '../store/app.state';
 export class NavbarComponent implements OnInit {
   user?: IUserProfile;
   isOpen = false
-  isLoggedIn$!: Observable<boolean>;
-  user$!: Observable<string | null>;
   loggedIn = false;
+  constructor(private store: Store<AppState>) { }
+  isAuthenticated?: Observable<boolean>;
 
 
 
@@ -28,25 +28,17 @@ export class NavbarComponent implements OnInit {
     this.isOpen = !this.isOpen;
   }
 
-  isAuthenticated$?: Observable<boolean>;
 
-  constructor(public authService: AuthService, private store: Store<AppState>) {
 
-  }
+
   ngOnInit(): void {
-    // this.isAuthenticated$ = this.store.select(selectIsAuthenticated);
-    // if (this.authService.isLoggedIn) {
-    //   this.userService.getUserProfile().subscribe((userProfile) => {
-    //     this.user = userProfile;
-    //   });
-    // }
+    this.isAuthenticated = this.store.select(isAuthenticated);
+  }
 
-    // this.isLoggedIn$ = this.store.select(isLoggedIn);
-    // // this.user$ = this.store.select(selectUser);
+  onLogout(event: Event) {
+    event.preventDefault()
+    this.store.dispatch(logout())
 
-    // this.isLoggedIn$.subscribe((isLoggedIn) => {
-    //   this.loggedIn = isLoggedIn;
-    // });
   }
 
 }

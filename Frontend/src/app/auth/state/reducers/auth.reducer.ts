@@ -1,6 +1,6 @@
+import { logout, signupSuccess } from './../actions/auth.actions';
 import { createReducer, on } from '@ngrx/store';
 import { login, loginFail, loginSuccess } from '../actions/auth.actions';
-import { User } from 'src/app/shared/services/auth/user.modal';
 import { initialState } from '../auth.state';
 
 // 
@@ -22,17 +22,18 @@ export const authReducer = createReducer(
       user:action.user
     };
   }),
-  // on(loginFail, (state, {error}) => {
-  //   return {
-  //     ...state,
-  //     isLoggedIn: false,
-  //     error,
-  //   };
-  // }),
-  // on(AuthActions.logout, (state) => {
-  //   return {
-  //     ...state,
-  //     isLoggedIn: false,
-  //   };
-  // })
-);
+  on(signupSuccess, (state, action) => {
+    console.log(action);
+
+    return {
+      ...state
+    };
+  }),
+  on(logout, (state)=>{
+    return{
+      ...state,
+      user:null,
+    }
+  })
+  
+  );

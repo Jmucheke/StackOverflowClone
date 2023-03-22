@@ -33,8 +33,8 @@ export async function RegisterUser(req: ExtendedRequest, res: Response) {
   return res.status(201).json({ message: 'User registered' })
 
  }
- catch (error) {
-  res.status(500).json(error)
+ catch (error:any) {
+  res.status(500).json(error.message)
  }
 }
 
@@ -68,7 +68,7 @@ export const loginUser = async(req: ExtendedRequest, res: Response)=> {
   const token = jwt.sign(payload[0], process.env.SECRETKEY as string, { expiresIn: '3600s' })
   console.log(token);
   
-   return res.status(200).json({ name: `${user[0].name}`, email: `${user[0].email}`, token })
+   return res.status(200).json({ name: `${user[0].name}`, email: `${user[0].email}`, token, expiresIn: '3600' })
 
  } catch (error) {
   console.log(error)
@@ -81,8 +81,8 @@ export const loginUser = async(req: ExtendedRequest, res: Response)=> {
 export const getUserProfile = async (req: ExtendedRequest, res: Response) => {
 
  try {
-  const userId = req.params.id
-  const user = await _db.exec("uspGetUserProfile", {id:userId});
+   const userId = req.info!.id
+   const user = await _db.exec("uspGetUserById", {id:userId});
 
   if (user.recordset.length > 0) {
    const { id, name, email, isAdmin } = user.recordset[0];
@@ -100,7 +100,7 @@ export const getUserProfile = async (req: ExtendedRequest, res: Response) => {
 export const getUserById = async (req: ExtendedRequest, res: Response) => {
 
  try {
-  const id = req.params.id
+  const id = req.info!.id
   const user = await _db.exec("uspGetUserById", { id: id });
 
   if (user.recordset.length > 0) {

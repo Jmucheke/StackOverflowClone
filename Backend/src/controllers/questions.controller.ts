@@ -46,10 +46,12 @@ export const addQuestion = async (req: ExtendedRequest, res: Response) => {
 // Get one question
 export const getQuestionById = async (req: ExtendedRequest, res: Response) => {
   const id = req.params.id;
+  
   // const { Id: userId } = req.user as User;
 
   try {
-    const question = await _db.exec("uspGetQuestionById", { id });
+    
+    const question = await _db.exec("uspGetQuestionById", {  id });
 
     if (question.recordset.length > 0) {
       return res.status(200).json(question.recordset[0]);
@@ -61,6 +63,26 @@ export const getQuestionById = async (req: ExtendedRequest, res: Response) => {
   }
 };
 
+// Get all user questions 
+export const getQuestionsByUser = async (req: ExtendedRequest, res: Response) => {
+  // const id = req.params.id;
+  
+  // const { Id: userId } = req.user as User;
+
+  try {
+    const userId = req.info!.id
+    
+    const question = await _db.exec("uspGetQuestionsByUser", {  userId:userId });
+
+    if (question.recordset.length > 0) {
+      return res.status(200).json(question.recordset);
+    } else {
+      return res.status(404).json({ message: "Question not found" });
+    }
+  } catch (error: any) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 // Update Question
 export const updateQuestion = async (req: Request, res: Response) => {
 

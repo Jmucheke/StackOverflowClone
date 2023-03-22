@@ -2,14 +2,14 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './questions/edit-question/home/home.component';
 import { QuestionsComponent } from './questions/questions.component';
 
 const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./home/home.component').then((c) => c.HomeComponent)
+      import('./questions/edit-question/home/home.component').then((c) => c.HomeComponent)
   },
   {
     path:'login',

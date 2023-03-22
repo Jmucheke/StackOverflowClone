@@ -1,3 +1,5 @@
 <app-navbar></app-navbar>
 <app-loading-spinner *ngIf="showLoading | async"></app-loading-spinner>
+<div class="alert alert-danger" *ngIf="errorMessage | async as error">{{error}}</div>
 <router-outlet></router-outlet>
+<app-footer></app-footer>

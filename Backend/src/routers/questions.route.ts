@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { addQuestion, getQuestionById, updateQuestion, deleteQuestion, getAllQuestions, getQuestionsByTagName, getAllQuestionsWithPagination } from "../controllers/questions.controller";
+import { addQuestion, getQuestionById, updateQuestion, deleteQuestion, getAllQuestions, getQuestionsByTagName, getAllQuestionsWithPagination, getQuestionsByUser } from "../controllers/questions.controller";
 import { VerifyToken } from "../middlewares/auth.middleware";
 
 const questionRoutes = Router()
 
 questionRoutes.post('/askQuestion',VerifyToken, addQuestion)
 questionRoutes.get('/getQuestionById/:id',VerifyToken, getQuestionById)
+questionRoutes.get('/getQuestionsByUser', VerifyToken, getQuestionsByUser)
 questionRoutes.get('/getQuestionByTag/:tagName',VerifyToken, getQuestionsByTagName)
 // questionRoutes.get('/allQuestions',VerifyToken, getAllQuestions)
 questionRoutes.get('/allQuestions', VerifyToken, getAllQuestionsWithPagination)

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, catchError, throwError } from 'rxjs';
-import { IUserProfile } from '../interface/interfaces';
+import { IUserProfile } from '../interfaces/interfaces';
 import { LocalStorageService } from './local-storage.service';
 import { HttpErrorPopupService } from '../http-error-popup/http-error-popup.service';
 
