@@ -1,13 +1,13 @@
 <section class="show-qn">
   <!-- All questions title -->
-  <div class="all-qn">
+  <div class="all-qn" >
     <h1>All Questions</h1>
     <button>Ask Question</button>
   </div>
   <!-- All questions title end -->
 
   <!-- Display question -->
-  <div class="question">
+  <div class="question" *ngFor="let question of questions" >
     <div class="qn-summary">
       <div class="votes">
         <span>0</span>

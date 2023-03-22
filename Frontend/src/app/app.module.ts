@@ -1,3 +1,5 @@
+import { QuestionsEffects } from './questions/state/questions/questions.effects';
+import { QuestionsReducer } from './questions/state/questions/questions.reducer';
 
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -33,12 +35,12 @@ import { QuestionsService } from './questions/service/questions.service';
     AppRoutingModule,
     FormsModule,
     StoreModule.forRoot({
-      auth: authReducer, shared: sharedReducer
+      auth: authReducer, shared: sharedReducer, question:QuestionsReducer
     }),
     NavbarComponent,
     FooterComponent,
     LoadingSpinnerComponent,
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([AuthEffects, QuestionsEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ]
 })
