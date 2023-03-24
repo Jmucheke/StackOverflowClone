@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Question } from 'src/app/shared/interfaces/interfaces';
 import { AppState } from 'src/app/shared/store/app.state';
 import { getQuestions } from '../state/questions/questions.selector';
+import { setLoadingSpinner } from 'src/app/shared/store/state/actions/shared.action';
 
 @Component({
   selector: 'app-display-questions',
@@ -16,11 +17,13 @@ import { getQuestions } from '../state/questions/questions.selector';
   styleUrls: ['./display-questions.component.css']
 })
 export class DisplayQuestionsComponent implements OnInit {
-  questions!: Observable<Question[]>;
+  questions$!: Observable<Question[]>;
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.questions = this.store.select(getQuestions);
+    this.store.dispatch(setLoadingSpinner({ status: true }))
+    this.questions$ = this.store.select(getQuestions);
+
     this.store.dispatch(loadQuestions());
   }
 

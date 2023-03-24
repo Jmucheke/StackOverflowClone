@@ -95,8 +95,10 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('userData');
+    localStorage.clear()
     if (this.timeoutInterval) {
       clearTimeout(this.timeoutInterval);
+
       this.timeoutInterval = null;
     }
   }

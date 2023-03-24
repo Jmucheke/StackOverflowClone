@@ -1,7 +1,6 @@
 .container {
+  padding: 5rem 0;
   font-size: 18px;
-  height: 90vh;
-  width: 90vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +11,7 @@
   padding: 1.5rem;
   border-radius: 0.8rem;
   width: 40rem;
-  height: 42rem;
+  height: 62rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,3 +44,13 @@
 }
 
 /* Form end */
+.form-group button:disabled {
+  background-color: grey;
+  color: white;
+}
+
+.error {
+  color: red;
+  width: 70%;
+
+}

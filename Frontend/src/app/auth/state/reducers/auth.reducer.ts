@@ -32,7 +32,7 @@ export const authReducer = createReducer(
   on(logout, (state)=>{
     return{
       ...state,
-      user:null,
+      
     }
   })
   

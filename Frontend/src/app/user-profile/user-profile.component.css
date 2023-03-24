@@ -1,4 +1,7 @@
 /* body */
+.mycontainer{
+  padding: 5rem 10rem;
+}
 .container {
   padding: 5rem 0;
   border-radius: .5em;

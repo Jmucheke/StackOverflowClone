@@ -48,7 +48,7 @@ export class AuthEffects {
       tap((action) => {
         this.store.dispatch(setErrorMessage({ message: '' }))
         if (action.redirect) {
-          this.router.navigate(['/'])
+          
         }
       }))
   }, { dispatch: false });

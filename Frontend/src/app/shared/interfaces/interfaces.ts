@@ -22,17 +22,21 @@ export interface authResponseData{
 }
 
 export interface IUserProfile {
-  id: number;
+  id: string;
   name: string;
   email: string;
   isAdmin: boolean;
 }
 
 export interface Question {
-  id: string, 
+  id: string,
   title: string,
-  description: string, 
-  code: string, 
-  userId: string, 
+  description: string,
+  code: string,
+  userId: string,
   tagName: string
+}
+
+export interface Message {
+  message: string
 }

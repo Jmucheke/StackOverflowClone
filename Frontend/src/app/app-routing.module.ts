@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './questions/edit-question/home/home.component';
 import { QuestionsComponent } from './questions/questions.component';
+import { AuthGuard } from './shared/services/guards/guard.service';
 
 const routes: Routes = [
   {
@@ -28,22 +29,26 @@ const routes: Routes = [
         {
           path:'',
           loadComponent:()=>
-            import('./questions/display-questions/display-questions.component').then((c)=>c.DisplayQuestionsComponent)
+            import('./questions/display-questions/display-questions.component').then((c)=>c.DisplayQuestionsComponent),
+          canActivate: [AuthGuard]
         },
         {
-          path: 'one-question',
+          path: 'one-question/:id',
           loadComponent: () =>
-            import('./questions/one-question/one-question.component').then((c) => c.OneQuestionComponent)
+            import('./questions/one-question/one-question.component').then((c) => c.OneQuestionComponent),
+          canActivate: [AuthGuard]
         },
-      {
+      { 
         path: 'edit-question',
         loadComponent: () =>
-          import('./questions/edit-question/edit-question.component').then((c) => c.EditQuestionComponent)
+          import('./questions/edit-question/edit-question.component').then((c) => c.EditQuestionComponent),
+          canActivate: [AuthGuard]
       },
       {
         path: 'ask-question',
         loadComponent: () =>
-          import('./questions/ask-question/ask-question.component').then((c) => c.AskQuestionComponent)
+          import('./questions/ask-question/ask-question.component').then((c) => c.AskQuestionComponent),
+        canActivate: [AuthGuard]
       }
 
       ]
@@ -55,12 +60,14 @@ const routes: Routes = [
       {
         path: 'edit-profile',
         loadComponent: () =>
-          import('./user-profile/edit-profile/edit-profile.component').then((c) => c.EditProfileComponent)
+          import('./user-profile/edit-profile/edit-profile.component').then((c) => c.EditProfileComponent),
+          canActivate: [AuthGuard]
       },
       {
         path: '',
         loadComponent: () =>
-          import('./user-profile/summary-profile/summary-profile.component').then((c) => c.SummaryProfileComponent)
+          import('./user-profile/summary-profile/summary-profile.component').then((c) => c.SummaryProfileComponent),
+          canActivate: [AuthGuard]
       }
       ]
   },
@@ -71,7 +78,8 @@ const routes: Routes = [
         {
           path: '',
           loadComponent: () =>
-            import('./admin/users/users.component').then((c) => c.UsersComponent)
+            import('./admin/users/users.component').then((c) => c.UsersComponent),
+          canActivate: [AuthGuard]
         }
       ]
   },

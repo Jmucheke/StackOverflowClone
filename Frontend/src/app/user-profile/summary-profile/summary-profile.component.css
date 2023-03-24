@@ -1,11 +1,68 @@
 /* summary title */
-.show-qn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+ .show-qn {
+  padding: 5rem 0;
 }
 
+.custom{
+  margin-bottom: 3rem;
+}
+
+.row{
+  padding-left: 6rem;
+}
+.row>* {
+  margin-right: 5rem;
+}
+
+.user-summary:hover{
+  cursor:pointer;
+}
+.user-summary{
+  padding-right: 1rem;  
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.user-summary .card{
+  border: none;
+}
+.card-questions .card{
+  border-bottom: 1px solid var(--powder);
+}
+.my-img img{
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.card-questions{
+  margin-top:3rem;
+}
+
+.qn-title {
+  padding: .8rem 0;
+}
+
+.qn-title a {
+  text-decoration: none;
+  font-size: 2rem;
+  color: var(--blue-600);
+  font-weight: 400;
+}
+
+.qn-title a:hover {
+  cursor: pointer;
+  color: var(--blue-500);
+}
+
+.btn {
+  background-color: var(--powder);
+  color: var(--blue-700);
+  border: none;
+  padding: 0.8rem 1rem;
+  margin: 0 1rem 0 0;
+}
+/* .card-header{
+  background-color: var(--orange);
+} */
+/*
 .all-qn {
   padding: 5rem 0 2rem 0;
   width: 65%;
@@ -30,6 +87,6 @@
 
 .all-qn button:hover {
   background-color: var(--blue-600);
-}
+} */
 
 /* summary title end */

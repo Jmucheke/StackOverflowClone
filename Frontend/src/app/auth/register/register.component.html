@@ -22,10 +22,15 @@
         <div class="form-group">
           <label for="password">Password</label>
           <input type="password" class="form-control" id="password" aria-describedby="passwordHelpInline" formControlName="password">
+          <small id="passwordHelpInline" class="form-text text-muted">
+            Passwords must contain at least eight characters, including at least 1 letter and 1 number.
+          </small>
 
 
           <div class="error" *ngIf="!form.get('password')?.valid && form.get('password')?.touched ">
             <span *ngIf="form.get('password')!.errors!['required']">Please enter a Password</span>
+            <span *ngIf="form.get('password')?.errors!['pattern']">Please Enter a valid
+              Password</span>
           </div>
 
         </div>

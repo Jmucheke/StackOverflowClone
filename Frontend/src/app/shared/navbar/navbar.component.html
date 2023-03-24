@@ -79,20 +79,32 @@
         </div>        
 
 
+
         <a *ngIf="!(isAuthenticated |async)" routerLink="login" class="btn btn-login">Log in</a>
         <a *ngIf="!(isAuthenticated |async)" routerLink="register" class="btn btn-register">Sign up</a>
-        <div *ngIf="isAuthenticated |async" class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Dropdown button
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+
+        <div *ngIf="(user$ | async) as user">
+          <!-- <div *ngIf="((isAuthenticated |async)&& (user.isAdmin))" >You are an admin</div> -->
+          <div *ngIf="(isAuthenticated |async)" class="dropdown">
+          
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill"
+                viewBox="0 0 16 16">
+                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
+              </svg>
+          
+              {{user.name}}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" *ngIf="((isAuthenticated |async)&& (user.isAdmin))" routerLink="admin">Profile</a> 
+              <a class="dropdown-item" *ngIf="((isAuthenticated |async)&& !(user.isAdmin))" routerLink="user-profile">Profile</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
           </div>
         </div>
-        <a *ngIf="isAuthenticated |async" class="btn btn-register" (click)="onLogout($event)">Logout</a>
+        <a *ngIf="(isAuthenticated |async)" class="btn btn-register" (click)="onLogout($event)">Logout</a>
       </div>
     </nav>
     

@@ -32,6 +32,10 @@ export class LoginComponent implements OnInit {
 
     this.store.dispatch(setLoadingSpinner({ status: true }))
     this.store.dispatch(login({ email, password }));
+    this.router.navigate(['/'])
+    // if(localStorage.getItem('token')!==null){
+      
+    // }
     // console.log(user);
 
     // this.router.navigate(['questions'])

@@ -1,20 +1,63 @@
 <section class="show-qn">
-  <!-- Questions summary -->
-  <div class="all-qn">
-    <h1>0 Questions</h1>
+  <div class="card text-center custom" *ngIf="(user$ | async) as user">
+    <div class="card-header">
+      Profile
+    </div>
+    <div class="card-body">
+      <h5 class="card-title my-img"><img src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" alt="profile"></h5>
+      <p class="card-text ">{{user.name}}</p>
+      <p class="card-text ">{{user.email}}</p>
+      <a href="#" class="btn btn-primary">Edit Profile</a>
+    </div>
+    <!-- <div class="card-footer text-muted">
+      2 days ago
+    </div> -->
   </div>
-  <!-- Questions summary end -->
-
-  <!-- answers summary -->
-  <div class="all-qn">
-    <h1>0 Answers</h1>
+  <!-- UserQuestions -->
+  <div class="row">
+    <div class="col-sm-3 user-summary">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">0 Questions</h1>
+          <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3 user-summary">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">0 Answers</h1>
+          <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3 user-summary">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="card-title">0 Tags</h1>
+          <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- answers summary end -->
 
-  <!-- Tags summary -->
-  <div class="all-qn">
-    <h1>0 Tags</h1>
+  <div class="card-questions" *ngFor="let question of questions$ | async">
+    <div class="card">
+      <!-- <h5 class="card-header">Featured</h5> -->
+      <div class="card-body">
+        <!-- <h5 class="card-title qn-title">{{question.title}}</h5> -->
+        <div class="qn-title">
+          <a routerLink="one-question">{{question.title}}
+          </a>
+        </div>
+        <p class="card-text">{{question.description}}</p>
+        <a href="#" class="btn btn-primary">{{question.tagName}}</a>
+      </div>
+    </div>
   </div>
-  <!-- Tags summary end -->
-
+  
 </section>
+

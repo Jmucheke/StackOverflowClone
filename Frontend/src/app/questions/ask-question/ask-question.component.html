@@ -1,20 +1,40 @@
 <div class="container">
   <div class="content">
     <div class="form">
-      <form>
+      <form [formGroup]="form" (ngSubmit)="postQuestion()">
         <div class="form-group">
           <label for="title">Title</label>
           <small id="titleinfo" class="form-text text-muted">
             Be specific and imagine you're asking a question to another person.
           </small>
           <input type="title" class="form-control" id="title" formControlName="title" aria-describedby="titleinfo" placeholder="e.g. Is there an R function for finding the index of an element in a vector?">
+          <div class="error" *ngIf="!form.get('title')?.valid && form.get('title')?.touched ">
+            <span *ngIf="form.get('title')!.errors!['required']">Please enter a Title</span>
+          </div>
         </div>
         <div class="form-group">
           <label for="description">Description</label>
           <input type="description" class="form-control" id="description" formControlName="description">
+          <div class="error" *ngIf="!form.get('description')?.valid && form.get('description')?.touched ">
+            <span *ngIf="form.get('description')!.errors!['required']">Please enter a Description</span>
+          </div>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-primary">Update</button>
+          <label for="code">Code</label>
+          <input type="code" class="form-control" id="code" formControlName="code">
+          <div class="error" *ngIf="!form.get('code')?.valid && form.get('code')?.touched ">
+            <span *ngIf="form.get('code')!.errors!['required']">Please enter a Code</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="tag">Tag</label>
+          <input type="tag" class="form-control" id="tag" formControlName="tagName">
+          <div class="error" *ngIf="!form.get('tag')?.valid && form.get('tag')?.touched ">
+            <span *ngIf="form.get('tag')!.errors!['required']">Please enter a Tag</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Add Question</button>
         </div>
       </form>
     </div>
