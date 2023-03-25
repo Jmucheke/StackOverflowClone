@@ -5,6 +5,7 @@ import { IUserProfile } from "src/app/shared/interfaces/interfaces";
 export interface UserState {
   user: IUserProfile;
   questions: Question[];
+  users:IUserProfile[]
 }
 
 export const initialState: UserState = {
@@ -15,5 +16,6 @@ export const initialState: UserState = {
     isAdmin:false,
 
   },
-  questions: []
+  questions: [],
+  users:[]
 };

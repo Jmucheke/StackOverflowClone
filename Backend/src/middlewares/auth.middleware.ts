@@ -1,8 +1,8 @@
+import { DecodedData } from './../models/index';
 import { RequestHandler, Request, Response, NextFunction } from 'express'
 import dotenv from 'dotenv'
 import path from 'path'
 import jwt from 'jsonwebtoken'
-import { DecodedData } from '../models/index'
 dotenv.config({ path: path.resolve(__dirname, '../../.env') })
 
 interface ExtendedRequest extends Request {
@@ -22,5 +22,20 @@ export function VerifyToken(req: ExtendedRequest, res: Response, next: NextFunct
  catch (error: any) {
   res.status(403).json(error.message)
  }
- next()
+ next() 
 }
+
+// Check if user is an admin
+export const authorizeAdmin = (
+ req: ExtendedRequest,
+ res: Response,
+ next: NextFunction
+): any => {
+ if (req.info && req.info.isAdmin) {
+  next();
+ } else {
+  return res
+   .status(403)
+   .json({ message: "Forbidden, not authorized to perform action" });
+ }
+};

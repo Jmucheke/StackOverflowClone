@@ -6,7 +6,7 @@ import { mergeMap, map } from 'rxjs';
 import { AppState } from 'src/app/shared/store/app.state';
 import { setLoadingSpinner } from 'src/app/shared/store/state/actions/shared.action';
 import { UserService } from './../../shared/services/user.service';
-import { getUser, getUserSuccess, loadQuestions, loadQuestionsSuccess } from './user.actions';
+import { getUser, getUserSuccess, loadQuestions, loadQuestionsSuccess, loadAllUsersSuccess, loadAllUsers } from './user.actions';
 
 
 
@@ -40,6 +40,21 @@ export class UserEffects {
             this.store.dispatch(setLoadingSpinner({ status: false }))
 
             return loadQuestionsSuccess({ questions });
+          })
+        );
+      })
+    );
+  });
+
+  loadAllUsers$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(loadAllUsers),
+      mergeMap((action) => {
+        return this.userService.getAllUsers().pipe(
+          map((users) => {
+            this.store.dispatch(setLoadingSpinner({ status: false }))
+
+            return loadAllUsersSuccess({ users });
           })
         );
       })

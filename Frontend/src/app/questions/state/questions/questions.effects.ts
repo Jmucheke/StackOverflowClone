@@ -2,7 +2,7 @@ import { QuestionsService } from './../../service/questions.service';
 import { map, mergeMap } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { addQuestion, loadQuestions, loadQuestionsSuccess, addQuestionSuccess } from './questions.actions';
+import { addQuestion, loadQuestions, loadQuestionsSuccess, addQuestionSuccess, loadOneQuestionById, loadOneQuestionByIdSuccess } from './questions.actions';
 import { setLoadingSpinner } from 'src/app/shared/store/state/actions/shared.action';
 import { AppState } from 'src/app/shared/store/app.state';
 import { Store } from '@ngrx/store';
@@ -66,4 +66,17 @@ export class QuestionsEffects {
   //     })
   //   );
   // });
+
+  loadOneQuestion$ = createEffect(()=>{
+    return this.actions$.pipe(
+      ofType(loadOneQuestionById),
+      mergeMap((action)=>{
+        return this.questionsService.getOneQuestionById(action.id).pipe(
+          map((question)=>{
+            return loadOneQuestionByIdSuccess({question})
+          })
+        )
+      })
+    )
+  })
 }

@@ -23,7 +23,7 @@ export class QuestionsService {
       .get<Question[]>(`http://localhost:4000/questions/getQuestionsByUser`)
   }
 
-  getOneQuestion(id: string): Observable<Question> {
+  getOneQuestionById(id: string): Observable<Question> {
     return this.http.get<Question>(`http://localhost:4000/questions/getQuestionById/${id}`)
   }
 

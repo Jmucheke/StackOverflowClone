@@ -43,3 +43,13 @@ export const loadQuestionsSuccess = createAction(
   LOAD_QUESTIONS_SUCCESS,
   props<{ questions: Question[] }>()
 );
+
+export const loadOneQuestionById = createAction(
+  LOAD_QUESTION_BY_ID,
+  props<{id:string}>()
+  );
+
+export const loadOneQuestionByIdSuccess = createAction(
+  LOAD_QUESTION_BY_ID_SUCCESS,
+  props<{ question: Question }>()
+)

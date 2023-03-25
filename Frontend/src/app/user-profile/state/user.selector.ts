@@ -19,3 +19,8 @@ export const getUserQuestions = createSelector(getUserState, (state)=>{
   return state.questions;
 
 })
+
+export const getAllUsers = createSelector(getUserState, (state) => {
+  return state.users;
+
+})

@@ -11,5 +11,6 @@ import { FooterComponent } from '../shared/footer/footer.component';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent {
+  
 
 }

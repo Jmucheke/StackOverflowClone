@@ -17,5 +17,10 @@ export class UserService {
       .get<IUserProfile>(`http://localhost:4000/users/profile`)
   }
 
+  getAllUsers(): Observable<IUserProfile[]> {
+    return this.http
+      .get<IUserProfile[]>(`http://localhost:4000/users/`)
+  }
+
   
 }

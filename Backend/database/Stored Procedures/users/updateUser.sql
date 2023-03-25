@@ -22,3 +22,18 @@ BEGIN
     FROM users
     WHERE id = @id;
 END
+
+-- Ensuring that only one admin exists in the database
+-- select * from users;
+
+-- Query to set user to only one admin
+-- CREATE UNIQUE INDEX unique_admin ON [users] (isAdmin) WHERE isAdmin = 1;
+
+-- testing 
+-- UPDATE users
+-- SET isAdmin = 1
+-- WHERE id = '1acbd174-97be-458e-acb8-ae12bd2b8a38'
+
+
+
+
