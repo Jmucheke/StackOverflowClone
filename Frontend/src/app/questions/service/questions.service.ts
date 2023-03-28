@@ -27,15 +27,15 @@ export class QuestionsService {
     return this.http.get<Question>(`http://localhost:4000/questions/getQuestionById/${id}`)
   }
 
-  // updateQuestion(post: Post) {
-  //   const postData = {
-  //     [post.id]: { title: post.title, description: post.description },
-  //   };
-  //   return this.http.patch(
-  //     `https://vue-completecourse.firebaseio.com/posts.json`,
-  //     postData
-  //   );
-  // }
+  updateQuestion(question: Question) {
+    const postData = {
+      [question.id]: { title: question.title, description: question.description },
+    };
+    return this.http.patch(
+      `https://vue-completecourse.firebaseio.com/posts.json`,
+      postData
+    );
+  }
 
   deleteQuestion(id: string) {
     return this.http.delete(

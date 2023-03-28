@@ -17,10 +17,10 @@ export const getQuestions = createSelector(getQuestionsState, (state) => {
 export const getQuestionDetails = (questionId:string) =>
 createSelector(
   getQuestionsState, (state) =>{
-    return state.questions.find((p)=>p.id=questionId)
+    // return state.questions[questionId]
   }
 )
-
+    // .find((p) => p.id = questionId)
 // export const getQuestionById = createSelector(getQuestionsState, (state, props) => {
 //   return state.questions.find((questions) => question.id === props.id);
 // });
